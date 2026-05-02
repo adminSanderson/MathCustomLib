@@ -82,15 +82,43 @@ Read the documentation
 
 ```c
 #include <stdio.h>
+#include <stdlib.h>
 #include "mathcustomlib.h"
 
 int main() {
-    printf("%d\n", add(5, 3));
-    printf("%d\n", sub(5, 3));
-    printf("%d\n", mul(5, 3));
+    int rows = 3;
+    int cols = 3;
+
+    double** matrix = create_matrix(rows, cols);
+
+    if (!matrix) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matrix[i][j] = i * cols + j + 1;
+        }
+    }
+
+    printf("Matrix:\n");
+    show_matrix(matrix, rows, cols, 2);
+
+    free_matrix(matrix, rows);
+
     return 0;
 }
 ```
+Output:
+
+```cmd
+Matrix:
+1.00 2.00 3.00 
+4.00 5.00 6.00 
+7.00 8.00 9.00 
+```
+
 
 ---
 
@@ -104,4 +132,4 @@ make clean
 
 ## 👨‍💻 Author
 
-adminSanderson
+@adminSanderson
