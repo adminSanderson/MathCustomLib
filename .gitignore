@@ -1,1 +1,95 @@
+# =========================
+# BUILD FILES
+# =========================
+
+# object files
+*.o
+*.obj
+
+# static libraries
+*.a
+*.lib
+
+# shared libraries
+*.so
+*.dll
+*.dylib
+
+# executables
+*.exe
+*.out
+*.app
+
+# =========================
+# BUILD DIRECTORIES
+# =========================
+
+build/
+lib/
+bin/
+
+# =========================
+# MAKE / CMAKE
+# =========================
+
+Makefile~
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+
+# =========================
+# DEBUG / TEMP FILES
+# =========================
+
+*.log
+*.tmp
+*.temp
+*.cache
+
+# =========================
+# EDITOR FILES
+# =========================
+
+# VS Code
 .vscode/
+
+# Visual Studio
+*.vcxproj*
+*.sln
+*.user
+*.pdb
+*.ilk
+
+# CLion / JetBrains
+.idea/
+
+# =========================
+# OS FILES
+# =========================
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# =========================
+# TEST BINARIES
+# =========================
+
+tests/*.exe
+examples/*.exe
+
+# =========================
+# OPTIONAL
+# =========================
+
+# coverage
+*.gcda
+*.gcno
+*.gcov
+
+# profiling
+gmon.out
