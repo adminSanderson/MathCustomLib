@@ -1,6 +1,6 @@
 # MathCustomLib
 
-MathCustomLib is a simple C library for basic math operations.
+MathCustomLib is a C library for math operations.
 
 ---
 
