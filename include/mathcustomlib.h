@@ -3,48 +3,42 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stddef.h>
 
 // =====================
-// BASIC FUNCTIONS
-// =====================
-
-int add(int a, int b);
-int sub(int a, int b);
-int mul(int a, int b);
-int divi(int a, int b);
-
-// =====================
-// MATRIX STRUCT
+// NDARRAY STRUCT
 // =====================
 
 typedef struct {
-    int rows;
-    int cols;
+    int ndim;
+    size_t* shape;
+    size_t* strides;
     double* data;
-} Matrix;
+    int owns_data;
+} NDArray;
 
-Matrix matrix_create(int rows, int cols);
-void matrix_free(Matrix m);
+// =====================
+// CORE FUNCTIONS
+// =====================
 
-void matrix_print(Matrix m, int precision);
-void matrix_fill(Matrix m, double value);
-Matrix matrix_copy(Matrix m);
+NDArray* nda_create(int ndim, const size_t* shape);
 
-// MATRIX SPECIAL
+void nda_free(NDArray* arr);
 
-Matrix matrix_identity(int size);
-Matrix matrix_fill_value(int rows, int cols);
+size_t nda_total_size(const NDArray* arr);
 
-// MATRIX OPERATIONS
+int nda_same_shape(const NDArray* a, const NDArray* b);
 
-Matrix matrix_add(Matrix a, Matrix b);
-Matrix matrix_sub(Matrix a, Matrix b);
-Matrix matrix_scalar_mul(Matrix a, double k);
-Matrix matrix_transpose(Matrix a);
-Matrix matrix_mul(Matrix a, Matrix b);
+// =====================
+// OPERATIONS
+// =====================
 
-// MATRIX ADVANCED
+NDArray* nda_add(const NDArray* a, const NDArray* b);
 
-double matrix_determinant(Matrix m);
+// =====================
+// IO
+// =====================
+
+void nda_print(const NDArray* arr);
 
 #endif // MATHCUSTOMLIB_H

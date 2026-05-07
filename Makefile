@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -Iinclude -Wall -Wextra
 
-SRC = src/simple_functions.c src/matrix_functions.c
-OBJ = build/simple_functions.o build/matrix_functions.o
+SRC = src/nd_array_functions.c
+OBJ = build/nd_array_functions.o
 
 LIB = lib/libmathcustomlib.a
 
