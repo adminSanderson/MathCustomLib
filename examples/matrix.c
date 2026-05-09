@@ -2,45 +2,36 @@
 #include <stdio.h>
 
 int main() {
-    size_t shape[1] = {6};
 
-    NDArray* a = nda_create(1, shape);
-    NDArray* b = nda_create(1, shape);
+    size_t shape[1] = {5};
 
-    if (!a || !b) {
-        printf("Error: memory allocation failed\n");
-        return 1;
+    NDArray* a = nda_ones(1, shape);
+    NDArray* b = nda_zeros(1, shape);
+
+    for (size_t i = 0; i < nda_total_size(b); i++) {
+        b->data[i] = i * 2;
     }
-
-    size_t total = nda_total_size(a);
-
-    for (size_t i = 0; i < total; i++) {
-        a->data[i] = (double)i;        // 0 1 2 3 4 5
-        b->data[i] = 10.0;            // 10 10 10 ...
-    }
-
-    printf("Array A: ");
-    nda_print(a);
-    printf("\n");
-
-    printf("Array B: ");
-    nda_print(b);
-    printf("\n");
 
     NDArray* c = nda_add(a, b);
 
-    if (!c) {
-        printf("Error: nda_add failed\n");
-        return 1;
-    }
+    printf("Array A:\n");
+    nda_print(a);
 
-    printf("A + B = ");
+    printf("\nArray B:\n");
+    nda_print(b);
+
+    printf("\nA + B:\n");
     nda_print(c);
-    printf("\n");
+
+    printf("\nIdentity matrix:\n");
+
+    NDArray* eye = nda_eye(4);
+    nda_print(eye);
 
     nda_free(a);
     nda_free(b);
     nda_free(c);
+    nda_free(eye);
 
     return 0;
 }

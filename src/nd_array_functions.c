@@ -119,3 +119,64 @@ void nda_free(NDArray* arr) {
     free(arr->strides);
     free(arr);
 }
+
+NDArray* nda_fill(NDArray* arr, double value) {
+    if (!arr) return NULL;
+
+    size_t total = nda_total_size(arr);
+
+    for (size_t i = 0; i < total; i++) arr->data[i] = value;
+
+    return arr;
+}
+
+NDArray* nda_zeros(int ndim, const size_t* shape) {
+    NDArray* arr = nda_create(ndim, shape);
+
+    if (!arr) return NULL;
+
+    nda_fill(arr, 0);
+
+    return arr;
+}
+
+NDArray* nda_ones(int ndim, const size_t* shape) {
+    NDArray* arr = nda_create(ndim, shape);
+
+    if (!arr) return NULL;
+
+    nda_fill(arr, 1.0);
+
+    return arr;
+}
+
+NDArray* nda_copy(NDArray* arr) {
+    NDArray* arr_copy = nda_create(arr->ndim, arr->shape);
+
+    if (!arr_copy) return NULL;
+
+    size_t total = nda_total_size(arr);
+
+    for (size_t i = 0; i < total; i++) arr_copy->data[i] = arr->data[i];
+
+    return arr_copy;
+}
+
+NDArray* nda_eye(size_t size) {
+    size_t shape[2] = {size, size};
+
+    NDArray* arr = nda_create(2, shape);
+
+    if (!arr) return NULL;
+
+
+    size_t total = nda_total_size(arr);
+
+    for (size_t i = 0; i < total; i++) arr->data[i] = 0.0;
+
+    for (size_t i = 0; i < size; i++) {
+        arr->data[i * size + i] = 1.0;
+    }
+
+    return arr;
+}

@@ -29,6 +29,16 @@ size_t nda_total_size(const NDArray* arr);
 
 int nda_same_shape(const NDArray* a, const NDArray* b);
 
+NDArray* nda_fill(NDArray* arr, double value);
+
+NDArray* nda_zeros(int ndim, const size_t* shape);
+
+NDArray* nda_ones(int ndim, const size_t* shape);
+
+NDArray* nda_copy(NDArray* arr);
+
+NDArray* nda_eye(size_t size);
+
 // =====================
 // OPERATIONS
 // =====================
